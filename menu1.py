@@ -15,23 +15,21 @@ class Main:
         self.size = (800,600)
         self.window = pygame.display.set_mode((self.size))
         self.fps = 60
-        #inserindo a imagem
-        self.back = pygame.image.load(r'data/images/mymelody.png')
-        self.back = pygame.transform.scale(self.back,(330,350))
         #som de navegação 
         self.nav_mus = mixer.Sound(r"data/music/navigation.wav")
+        #self.intro = pygame.image.load(r"data/images/template.png")
         self.played = False
         self.load_settings = False
-        pygame.display.set_caption("Jogo Breakout <3")
+        pygame.display.set_caption("Your game name")
         self.clock = pygame.time.Clock()
         self.colors = {
         "white" : (255,255,255),
-        "fundoBtn" : (255,111,156),
+        "red" : (255,0,0),
         "black" : (0,0,0),
         "blue" : (0,0,255),
         "green" : (0,255,0),
         "test" : (100,60,40),
-        "fundo" : (255,203,219),
+        "bg" : (0,215,215),
         "ROSA_ESCURO" : (242,167,187), #coração
         "ROSA_CLARO" : (242,220,242), #barrinha
         "BEGE" : (242,237,213), #tijolo 1
@@ -42,9 +40,12 @@ class Main:
         }
 
         self.locations = [
-            (100,340,200,410),
-            (100,430,200,500),
-            (100,520,200,590)            
+            #(20,250,200,320),
+            #(20,340,200,410),
+            #(20,430,200,500)
+            (30,340,200,410),
+            (30,430,200,500),
+            (30,520,200,590)            
         ]
 
         self.append_rect()
@@ -65,9 +66,9 @@ class Main:
 
     def append_rect(self):
         self.rects = {
-        "play_Rect" : pygame.Rect(100,320,180,70),
-        "settings_Rect" : pygame.Rect(100,410,180,70),
-        "exit_Rect" : pygame.Rect(100,500,180,70)
+        "play_Rect" : pygame.Rect(30,320,180,70),
+        "settings_Rect" : pygame.Rect(30,410,180,70),
+        "exit_Rect" : pygame.Rect(30,500,180,70)
         }
         self.len = len(self.rects)
 
@@ -83,15 +84,15 @@ class Main:
 
     def check_mouse_pos(self):
         if self.chng_clr(self.locations[0],None,None,para=True):
-            self.btn_clr[0] = (255,111,156)
+            self.btn_clr[0] = (205,0,255)
             self.mus_play()
 
         elif self.chng_clr(self.locations[1],None,None,para=True):
-            self.btn_clr[1] = (255,111,156)
+            self.btn_clr[1] = (205,0,255)
             self.mus_play()
 
         elif self.chng_clr(self.locations[2],None,None,para=True):
-            self.btn_clr[2] = (255,111,156)
+            self.btn_clr[2] = (205,0,255)
             self.mus_play()
 
         else:
@@ -103,9 +104,9 @@ class Main:
         pygame.draw.rect(self.window,self.btn_clr[2],self.rects["exit_Rect"])
         
     def blit_texts(self):
-        self.text("Jogar","white",150,335,34)
-        self.text("Forma","white",145,425,34)
-        self.text("Sair","white",160,515,34)
+        self.text("Jogar","white",80,335,34)
+        self.text("Forma","white",75,425,34)
+        self.text("Sair","white",90,515,34)
         
     def mus_play(self):
         if not self.played:
@@ -115,7 +116,7 @@ class Main:
     def game_loop(self):
         while True:
             self.pos_x , self.pos_y = pygame.mouse.get_pos()
-            self.window.fill(self.colors["fundo"])
+            self.window.fill(self.colors["bg"])
             for self.event in pygame.event.get():
                 if self.event.type == pygame.QUIT:
                     pygame.quit()
@@ -147,7 +148,6 @@ class Main:
             self.check_mouse_pos()
             self.draw_rects()
             self.blit_texts()
-            self.window.blit(self.back,(400,240))
             pygame.display.update()
 
 main = Main()
