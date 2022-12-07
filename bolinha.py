@@ -17,7 +17,7 @@ class Bolinha(pg.sprite.Sprite):
         # Desenha a bolinha
         pg.draw.rect(self.image, color, [0, 0, width, height])
         
-        self.velocity = [randint(4,8),randint(-8,8)]
+        self.velocity = [randint(8,12),randint(-8,8)]
         
         self.rect = self.image.get_rect()
         

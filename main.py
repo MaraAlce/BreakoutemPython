@@ -7,15 +7,18 @@ from bolinha import Bolinha
 #importando classe tijolinho
 from tijolinho import Tijolinho
  
+pg.mixer.init()
 pg.init()
- 
+
+pg.mixer.music.load(r"data/music/music.mp3")
+pg.mixer.music.play(loops= -1)
 #Definindo cores
-ROSA_ESCURO = (242,167,187) #coração
-ROSA_CLARO = (242,220,242) #barrinha
-BEGE = (242,237,213) #tijolo 1
-LARANJA = (242,168,141) #tijolo 2
-CORAL = (242,197,187) #tijolo 3
-FUNDO = (135,206,250) #fundo
+CORACAO = (220,20,60) #coração
+BARRINHA = (255,255,255) #barrinha
+TIJOLO1 = (255,128,182) #tijolo 1
+TIJOLO3 = (255,20,147) #tijolo 3
+TIJOLO2 = (255,89,164) #tijolo 2
+FUNDO = (255,203,219) #fundo
 BRANCO = (255,255,255)
  
 pontos = 0 #pontuação se inicia em zero!!
@@ -30,30 +33,30 @@ pg.display.set_caption("Jogo Breakout <3")
 lista_sprites = pg.sprite.Group()
  
 #Criando e posicionando jogador
-jogador = Jogador(ROSA_CLARO, 100, 10)
+jogador = Jogador(BARRINHA, 100, 10)
 jogador.rect.x = 350
 jogador.rect.y = 560
  
 #Criando e posicionando a bolinha
-bolinha = Bolinha(ROSA_ESCURO,10,10)
+bolinha = Bolinha(CORACAO,10,10)
 bolinha.rect.x = 345
 bolinha.rect.y = 195
  
 todos_tijolinhos = pg.sprite.Group()
 for i in range(7):
-    tijolinho = Tijolinho(LARANJA,80,30)
+    tijolinho = Tijolinho(TIJOLO3,80,30)
     tijolinho.rect.x = 60 + i* 100
     tijolinho.rect.y = 60
     lista_sprites.add(tijolinho)
     todos_tijolinhos.add(tijolinho)
 for i in range(7):
-    tijolinho = Tijolinho(CORAL,80,30)
+    tijolinho = Tijolinho(TIJOLO2,80,30)
     tijolinho.rect.x = 60 + i* 100
     tijolinho.rect.y = 100
     lista_sprites.add(tijolinho)
     todos_tijolinhos.add(tijolinho)
 for i in range(7):
-    tijolinho = Tijolinho(BEGE,80,30)
+    tijolinho = Tijolinho(TIJOLO1,80,30)
     tijolinho.rect.x = 60 + i* 100
     tijolinho.rect.y = 140
     lista_sprites.add(tijolinho)
@@ -80,9 +83,9 @@ while jogando:
     #Move o jogador quando precionar teclas de seta
     keys = pg.key.get_pressed()
     if keys[pg.K_LEFT]:
-        jogador.irEsquerda(5)
+        jogador.irEsquerda(10)
     if keys[pg.K_RIGHT]:
-        jogador.irDireita(5)
+        jogador.irDireita(10)
  
     # --- lógica do jogo
     lista_sprites.update()
@@ -95,6 +98,8 @@ while jogando:
     if bolinha.rect.y>590:
         bolinha.velocity[1] = -bolinha.velocity[1]
         vidas -= 1
+        #quando o jogador perder uma vida, pisca o led vermelho 
+        
         if vidas == 0:
             #mensagem de fim de jogo
             font = pg.font.Font(None, 74)
@@ -121,6 +126,10 @@ while jogando:
       bolinha.bounce()
       pontos += 1
       tijolinho.kill()
+
+    #    Pode fazer aqui o led de quando bate no bloquinho
+
+
       if len(todos_tijolinhos)==0:
            #mostra mensagem de nivel concluído
             font = pg.font.Font(None, 74)
@@ -153,6 +162,8 @@ while jogando:
  
     # ---limite de 60 frames por segundo
     cronometro.tick(60)
- 
+
+pg.mixer.music.stop()
+pg.mixer.quit()
 #quando sair do loop, acaba o programa
 pg.quit()

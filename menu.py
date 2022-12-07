@@ -28,17 +28,9 @@ class Main:
         "white" : (255,255,255),
         "fundoBtn" : (255,111,156),
         "black" : (0,0,0),
-        "blue" : (0,0,255),
-        "green" : (0,255,0),
-        "test" : (100,60,40),
         "fundo" : (255,203,219),
-        "ROSA_ESCURO" : (242,167,187), #coração
-        "ROSA_CLARO" : (242,220,242), #barrinha
-        "BEGE" : (242,237,213), #tijolo 1
-        "LARANJA" : (242,168,141), #tijolo 2
-        "CORAL" : (242,197,187), #tijolo 3
-        "FUNDO" : (135,206,250), #fundo
-        "BRANCO" : (255,255,255)
+        "ROSA_ESCURO" : (242,167,187) #coração
+    
         }
 
         self.locations = [
