@@ -14,7 +14,8 @@ Jogo Breakout desenvolvido em Python com menu inpirado na personagem My Melody e
 
 Desenvolvido por: </br>
 Maria Alice Ferreira Pereira </br>
-Maria Julia Hofstetter Trevisan Pereira
+Maria Julia Hofstetter Trevisan Pereira </br>
+Felipe Stolze Vazquez
 
 Fontes: </br>
 https://github.com/CopyrightC/Pygame-Stylish-Menu </br>
